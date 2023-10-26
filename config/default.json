@@ -14,5 +14,6 @@
     "secureKey" : "path-to-cert/privkey.pem",
     "secureCert" : "path-to-cert/cert.pem",
     "secureChain" : "path-to-cert/chain.pem"
-  }
+  },
+  "dataFolder": "./data/"
 }

@@ -12,8 +12,8 @@ async function fillData() {
   const impressions = await ImpressionQuery.get();
 
   if (impressions.length === 0) {
-    const csvDisplayList = './data/interview.X.csv';
-    const csvEventList = './data/interview.Y.csv';
+    const csvDisplayList = `${config.get('dataFolder')}interview.X.csv`;
+    const csvEventList = `${config.get('dataFolder')}interview.Y.csv`;
 
     const displayList = await csv().fromFile(csvDisplayList);
     const eventList = await csv().fromFile(csvEventList);
