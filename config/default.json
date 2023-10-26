@@ -1,0 +1,18 @@
+{
+  "port": 8080,
+  "db": {
+    "driver": "pg",
+    "host": "localhost",
+    "port": "5432",
+    "user": "postgres",
+    "password": "simplepassword",
+    "database": "allmagen",
+    "timezone": "utc"
+  },
+  "ssl": {
+    "secure": false,
+    "secureKey" : "path-to-cert/privkey.pem",
+    "secureCert" : "path-to-cert/cert.pem",
+    "secureChain" : "path-to-cert/chain.pem"
+  }
+}
