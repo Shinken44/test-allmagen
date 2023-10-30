@@ -23,9 +23,6 @@ export class ChartsService {
       let endPeriod = impressions[0].reg_time;
       let startPeriod = new Date(endPeriod.getTime() - interval);
 
-      console.log(lastImpressionTime);
-      console.log(endPeriod);
-
       const chart: Chart[] = [];
 
       while (
