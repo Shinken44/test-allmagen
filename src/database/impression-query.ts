@@ -3,12 +3,22 @@ import Helper from '../helper';
 import { Impression } from './models';
 
 export default class ImpressionQuery {
-  public static async get(): Promise<Impression[]> {
+  public static async get(
+    startTime: Date,
+    endTime: Date,
+  ): Promise<Impression[]> {
     try {
-      return await db.query(`
-        SELECT * FROM impression WHERE reg_time IS NOT null
+      return await db.query(
+        `
+        SELECT * FROM impression 
+        WHERE 
+            reg_time IS NOT null AND 
+            reg_time > $1 AND 
+            reg_time < $2
         ORDER BY reg_time DESC
-      `);
+      `,
+        [startTime, endTime],
+      );
     } catch (e) {
       throw new Error(`ImpressionQuery.get: ${e.message}`);
     }

@@ -5,9 +5,14 @@ import Helper from '../helper';
 
 @Injectable()
 export class TablesService {
-  async get(field: 'mm_dma' | 'site_id', tag: string): Promise<Table[]> {
+  async get(
+    field: 'mm_dma' | 'site_id',
+    tag: string,
+    limit: number,
+    offset: number,
+  ): Promise<Table[]> {
     try {
-      const tableDate = await TableQuery.get(field, tag);
+      const tableDate = await TableQuery.get(field, tag, limit, offset);
 
       console.log(tableDate.length);
 

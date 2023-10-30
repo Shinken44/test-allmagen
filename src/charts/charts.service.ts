@@ -6,16 +6,21 @@ import Helper from '../helper';
 
 @Injectable()
 export class ChartsService {
-  async get(tag: string, interval: number): Promise<Chart[]> {
+  async get(
+    tag: string,
+    interval: number,
+    startTime: Date,
+    endTime: Date,
+  ): Promise<Chart[]> {
     try {
-      let impressions = await ImpressionQuery.get();
+      let impressions = await ImpressionQuery.get(startTime, endTime);
       if (impressions.length === 0) return [];
 
       let events = await EventQuery.get(tag);
 
       const lastImpressionTime = impressions[impressions.length - 1].reg_time;
 
-      let endPeriod = Helper.getEndOfDayTime(impressions[0].reg_time);
+      let endPeriod = impressions[0].reg_time;
       let startPeriod = new Date(endPeriod.getTime() - interval);
 
       console.log(lastImpressionTime);
@@ -23,7 +28,11 @@ export class ChartsService {
 
       const chart: Chart[] = [];
 
-      while (impressions.length > 0 && lastImpressionTime < endPeriod) {
+      while (
+        impressions.length > 0 &&
+        lastImpressionTime < endPeriod &&
+        chart.length < 30
+      ) {
         const impressionCount = impressions.filter((impression) => {
           return (
             startPeriod < impression.reg_time &&

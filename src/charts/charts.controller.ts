@@ -9,7 +9,9 @@ export class ChartsController {
   async get(
     @Query('tag') tag: string,
     @Query('interval') interval: number,
+    @Query('startTime') startTime: Date,
+    @Query('endTime') endTime: Date,
   ): Promise<Chart[]> {
-    return await this.chartService.get(tag, interval);
+    return await this.chartService.get(tag, interval, startTime, endTime);
   }
 }
