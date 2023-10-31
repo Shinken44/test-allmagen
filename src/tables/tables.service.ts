@@ -20,7 +20,7 @@ export class TablesService {
         const click_count = tag[0] !== 'v' ? data.event_count : 0;
 
         const CTR = Helper.calcCTR(data.impression_count, click_count);
-        const EvPM = Helper.calcCTR(data.impression_count, data.event_count);
+        const EvPM = Helper.calcEvPM(data.impression_count, data.event_count);
 
         return {
           ...data,

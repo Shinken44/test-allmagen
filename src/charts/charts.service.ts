@@ -43,7 +43,7 @@ export class ChartsService {
         const clickCount = tag[0] !== 'v' ? eventCount : 0;
 
         const CTR = Helper.calcCTR(impressionCount, clickCount);
-        const EvPM = Helper.calcCTR(impressionCount, eventCount);
+        const EvPM = Helper.calcEvPM(impressionCount, eventCount);
 
         chart.push({
           CTR: CTR ? CTR : 0,
